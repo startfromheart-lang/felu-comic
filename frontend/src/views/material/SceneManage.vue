@@ -111,8 +111,34 @@ const form = reactive({
   status: 1
 })
 
+const validateUrl = (rule, value, callback) => {
+  if (!value) {
+    callback()
+    return
+  }
+  const urlPattern = /^(https?:\/\/)[\w\-]+(\.[\w\-]+)+([\w\-.,@?^=%&:/~+#]*[\w\-@?^=%&/~+#])?$/
+  if (!urlPattern.test(value)) {
+    callback(new Error('请输入正确的URL格式，如：https://example.com/image.jpg'))
+  } else {
+    callback()
+  }
+}
+
 const rules = {
-  sceneName: [{ required: true, message: '请输入场景名称', trigger: 'blur' }]
+  sceneName: [
+    { required: true, message: '请输入场景名称', trigger: 'blur' },
+    { min: 2, max: 50, message: '场景名称长度应在2-50个字符之间', trigger: 'blur' }
+  ],
+  positioning: [
+    { max: 100, message: '场景定位长度不能超过100个字符', trigger: 'blur' }
+  ],
+  description: [
+    { max: 500, message: '描述长度不能超过500个字符', trigger: 'blur' }
+  ],
+  imageUrl: [
+    { max: 500, message: '图片URL长度不能超过500个字符', trigger: 'blur' },
+    { validator: validateUrl, trigger: 'blur' }
+  ]
 }
 
 const loadData = async () => {
