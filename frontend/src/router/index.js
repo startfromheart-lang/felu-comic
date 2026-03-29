@@ -110,6 +110,12 @@ const routes = [
         meta: { title: '漫画浏览', hidden: true }
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/views/NotFound.vue'),
+    meta: { title: '页面未找到' }
   }
 ]
 
