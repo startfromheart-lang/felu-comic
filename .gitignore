@@ -56,3 +56,7 @@ Thumbs.db
 *.pth
 *.pt
 *.ckpt
+
+# Java
+target/
+*.class
