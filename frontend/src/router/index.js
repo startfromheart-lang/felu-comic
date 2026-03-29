@@ -14,6 +14,12 @@ const routes = [
     redirect: '/dashboard',
     children: [
       {
+        path: '404',
+        name: 'NotFound',
+        component: () => import('@/views/NotFound.vue'),
+        meta: { title: '页面不存在', hidden: true }
+      },
+      {
         path: 'dashboard',
         name: 'Dashboard',
         component: () => import('@/views/Dashboard.vue'),
@@ -108,8 +114,16 @@ const routes = [
         name: 'ComicView',
         component: () => import('@/views/comic/ComicView.vue'),
         meta: { title: '漫画浏览', hidden: true }
+      },
+      {
+        path: ':pathMatch(.*)*',
+        redirect: '/404'
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/404'
   }
 ]
 
