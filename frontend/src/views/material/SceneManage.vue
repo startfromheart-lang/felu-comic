@@ -112,7 +112,20 @@ const form = reactive({
 })
 
 const rules = {
-  sceneName: [{ required: true, message: '请输入场景名称', trigger: 'blur' }]
+  sceneName: [
+    { required: true, message: '请输入场景名称', trigger: 'blur' },
+    { min: 1, max: 50, message: '场景名称长度应在1-50个字符之间', trigger: 'blur' }
+  ],
+  positioning: [
+    { required: true, message: '请输入场景定位', trigger: 'blur' },
+    { min: 1, max: 100, message: '场景定位长度应在1-100个字符之间', trigger: 'blur' }
+  ],
+  description: [
+    { max: 500, message: '描述长度不能超过500个字符', trigger: 'blur' }
+  ],
+  imageUrl: [
+    { type: 'url', message: '请输入有效的URL格式', trigger: 'blur' }
+  ]
 }
 
 const loadData = async () => {
