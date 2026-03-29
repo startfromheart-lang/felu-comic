@@ -60,3 +60,7 @@ Thumbs.db
 # Java
 target/
 *.class
+
+# VUE
+node_modules
+
